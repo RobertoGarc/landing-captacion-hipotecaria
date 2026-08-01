@@ -1,0 +1,131 @@
+@import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
+@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Fraunces', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+
+    --color-canvas: #f3f6f4;
+    --color-gold: #d4af6a;
+
+    --color-brand-50: #f2f7f4;
+    --color-brand-100: #ddece3;
+    --color-brand-200: #b9d7c5;
+    --color-brand-300: #89b89c;
+    --color-brand-400: #589575;
+    --color-brand-500: #38785a;
+    --color-brand-600: #286049;
+    --color-brand-700: #214d3c;
+    --color-brand-800: #1c3e32;
+    --color-brand-900: #183429;
+    --color-brand-950: #0c1f18;
+
+    --color-zinc-50: #fafafa;
+    --color-zinc-100: #f5f5f5;
+    --color-zinc-200: #e5e5e5;
+    --color-zinc-300: #d4d4d4;
+    --color-zinc-400: #a3a3a3;
+    --color-zinc-500: #737373;
+    --color-zinc-600: #525252;
+    --color-zinc-700: #404040;
+    --color-zinc-800: #262626;
+    --color-zinc-900: #171717;
+    --color-zinc-950: #0a0a0a;
+
+    --color-accent: var(--color-neutral-800);
+    --color-accent-content: var(--color-neutral-800);
+    --color-accent-foreground: var(--color-white);
+}
+
+@layer theme {
+    .dark {
+        --color-accent: var(--color-white);
+        --color-accent-content: var(--color-white);
+        --color-accent-foreground: var(--color-neutral-800);
+    }
+
+    [data-theme='crediservicios'] {
+        --color-canvas: #f2f5f9;
+        --color-gold: #f0b429;
+        --color-brand-50: #f0f7fc;
+        --color-brand-100: #d9ebf7;
+        --color-brand-200: #b3d6ef;
+        --color-brand-300: #7eb8e0;
+        --color-brand-400: #4a95c9;
+        --color-brand-500: #2f78b0;
+        --color-brand-600: #255f91;
+        --color-brand-700: #1f4d76;
+        --color-brand-800: #1c4062;
+        --color-brand-900: #1a3652;
+        --color-brand-950: #0d1f33;
+    }
+}
+
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+
+    .font-display {
+        font-family: var(--font-display);
+    }
+}
+
+@layer utilities {
+    .animate-fade-up {
+        animation: fade-up 0.8s ease-out both;
+    }
+
+    .animate-fade-up-delay {
+        animation: fade-up 0.9s ease-out 0.12s both;
+    }
+
+    .animate-fade-up-delay-2 {
+        animation: fade-up 1s ease-out 0.24s both;
+    }
+}
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-fade-up,
+    .animate-fade-up-delay,
+    .animate-fade-up-delay-2 {
+        animation: none;
+    }
+}
+
+[data-flux-field]:not(ui-radio, ui-checkbox) {
+    @apply grid gap-2;
+}
+
+[data-flux-label] {
+    @apply !mb-0 !leading-tight;
+}
+
+input:focus[data-flux-control],
+textarea:focus[data-flux-control],
+select:focus[data-flux-control] {
+    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+}
