@@ -12,6 +12,9 @@ services:
     region: oregon
     healthCheckPath: /up
     envVars:
+      # Nginx (richarvey) listens on 80; Render must probe that port.
+      - key: PORT
+        value: "80"
       - key: APP_NAME
         value: LandingHipotecaria
       - key: APP_ENV
