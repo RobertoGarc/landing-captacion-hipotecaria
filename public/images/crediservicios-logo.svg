@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-label="Crediservicios Ecuador">
   <defs>
     <linearGradient id="csvBar" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -11,21 +12,12 @@
       <stop offset="100%" stop-color="#8B7355"/>
     </linearGradient>
   </defs>
-
-  <!-- CSV monogram -->
   <g transform="translate(320 128)" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle">
-    <!-- C -->
     <text x="-78" y="38" font-size="148" fill="#1B5E20" stroke="url(#goldStroke)" stroke-width="5" paint-order="stroke fill">C</text>
-    <!-- V -->
     <text x="78" y="38" font-size="148" fill="#1B5E20" stroke="url(#goldStroke)" stroke-width="5" paint-order="stroke fill">V</text>
-    <!-- S on top -->
     <text x="0" y="34" font-size="118" fill="#FFFFFF" stroke="url(#goldStroke)" stroke-width="5.5" paint-order="stroke fill">S</text>
   </g>
-
-  <!-- Divider -->
   <rect x="120" y="236" width="400" height="10" rx="2" fill="url(#csvBar)"/>
-
-  <!-- Wordmark -->
   <text x="320" y="292" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="800" fill="#111111" letter-spacing="0.5">Crediservicios Ecuador</text>
-  <text x="320" y="332" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="800" fill="#111111" letter-spacing="3.2">BROKER DE CRÉDITO</text>
+  <text x="320" y="332" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="800" fill="#111111" letter-spacing="3.2">BROKER DE CR&#xC9;DITO</text>
 </svg>

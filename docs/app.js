@@ -60,7 +60,7 @@ const brands = {
     provinces: ["Pichincha", "Guayas", "Azuay", "Manabí", "Tungurahua", "Imbabura"],
     phonePlaceholder: "0991234567",
     logo: "./images/crediservicios-mark.svg",
-    logoFull: "./images/crediservicios-logo.svg",
+    logoFull: "./images/crediservicios-logo.png",
     content: {
       brand_name: "Crediservicios Ecuador",
       brand_tagline: "Broker de crédito · Precalificación seria, sin rodeos",

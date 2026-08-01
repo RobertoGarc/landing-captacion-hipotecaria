@@ -129,12 +129,13 @@ a {
 
 .hero-logo {
   display: block;
-  height: clamp(5.5rem, 16vw, 7.2rem);
-  width: auto;
-  max-width: min(100%, 22rem);
+  height: auto;
+  width: min(100%, 18rem);
+  max-height: 8.5rem;
+  object-fit: contain;
   border-radius: 0.9rem;
   background: rgba(255, 255, 255, 0.96);
-  padding: 0.7rem 0.85rem;
+  padding: 0.75rem 0.95rem;
   box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.55);
   animation: fade-up 0.8s ease both;
 }
