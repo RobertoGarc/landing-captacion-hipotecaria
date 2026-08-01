@@ -70,7 +70,29 @@ En `.env.example` están placeholders para:
 
 Sin estas claves la landing y el formulario funcionan igual; solo quedan desactivadas esas integraciones.
 
-## Desplegar demo en Render (recomendado / gratis)
+## Demo estática en GitHub Pages (más fácil / gratis)
+
+Hay un demo visual en la carpeta `docs/` (HTML + CSS + JS) con:
+
+- Switch **Clarahipoteca (EUR)** / **Crediservicios (USD)**
+- Hero, valor, ventajas, proceso, formulario multipaso (mock), testimonios y FAQ
+
+### Activar Pages
+
+1. En GitHub → repo → **Settings** → **Pages**
+2. **Source**: Deploy from a branch
+3. Branch: `main` · folder: `/docs`
+4. Save
+
+URL típica:
+
+`https://robertogarc.github.io/landing-captacion-hipotecaria/`
+
+También puedes forzar marca: `?demo=crediservicios`
+
+> Es una demo de presentación: el formulario **no** guarda leads. El producto real sigue siendo Laravel.
+
+## Desplegar Laravel en Render (app completa)
 
 El repo incluye `render.yaml`, `Dockerfile` y `scripts/00-laravel-deploy.sh`.
 

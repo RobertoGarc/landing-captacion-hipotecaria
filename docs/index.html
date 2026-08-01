@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="clarahipoteca">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Clarahipoteca · Demo landing hipotecaria</title>
+    <meta
+      name="description"
+      content="Demo estática de landing de captación hipotecaria con switch Clarahipoteca (España / EUR) y Crediservicios (Ecuador / USD)."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="demo-bar">
+      <div>
+        Demo visual estática ·
+        <strong>GitHub Pages</strong>
+        · el formulario no envía datos reales
+      </div>
+      <div class="switch" role="group" aria-label="Cambiar marca demo">
+        <button type="button" data-brand="clarahipoteca" aria-pressed="true">Clarahipoteca · EUR</button>
+        <button type="button" data-brand="crediservicios" aria-pressed="false">Crediservicios · USD</button>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <div class="wrap inner">
+        <a class="logo" href="#top" data-bind="brand_name">Clarahipoteca</a>
+        <a class="header-cta" href="#estudio" data-bind="cta_nav">Estudiar hipoteca</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <img
+          id="hero-image"
+          class="hero-media"
+          src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1800&q=80"
+          alt="Vivienda iluminada al atardecer"
+          fetchpriority="high"
+        />
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="wrap hero-content">
+          <p class="hero-brand" data-bind="brand_name">Clarahipoteca</p>
+          <h1 class="hero-title" data-bind="hero_headline">Descubre qué hipoteca encaja contigo en minutos</h1>
+          <p class="hero-sub" data-bind="hero_subheadline">
+            Te ayudamos a comparar opciones reales según tu perfil, tu vivienda y tu capacidad de pago.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-gold" href="#estudio" data-bind="hero_cta">Empezar estudio gratuito</a>
+            <a class="btn btn-ghost" href="#proceso">Ver proceso</a>
+          </div>
+          <p class="tagline" data-bind="brand_tagline">Estudio hipotecario claro, rápido y sin compromiso</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap value-grid">
+          <div>
+            <p class="kicker">Propuesta de valor</p>
+            <h2 data-bind="value_title">Una hipoteca no se elige a ciegas</h2>
+            <p class="lead" data-bind="value_body">
+              Analizamos tu caso con datos reales para estimar viabilidad, cuota orientativa y siguientes pasos.
+            </p>
+          </div>
+          <aside class="panel">
+            <p class="font-display" style="font-size: 1.5rem; margin: 0">Estudio inicial en 6 pasos</p>
+            <p>Sin compromiso. Validación en tiempo real y respuesta del equipo en menos de 24h laborables.</p>
+            <a class="btn btn-gold" href="#estudio">Empezar ahora</a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section bg-white">
+        <div class="wrap">
+          <h2 data-bind="benefits_title">Ventajas de estudiar tu hipoteca con nosotros</h2>
+          <div class="benefits" id="benefits"></div>
+        </div>
+      </section>
+
+      <section id="proceso" class="section bg-dark">
+        <div class="wrap">
+          <h2 data-bind="process_title">Así de sencillo es el proceso</h2>
+          <ol class="steps" id="process-steps"></ol>
+        </div>
+      </section>
+
+      <section id="estudio" class="section">
+        <div class="wrap form-layout">
+          <div>
+            <p class="kicker">Conversión</p>
+            <h2 data-bind="form_title">Completa tu estudio hipotecario</h2>
+            <p class="lead" data-bind="form_lead">
+              Cuéntanos tu caso y te devolvemos una orientación clara sobre viabilidad y siguientes pasos.
+            </p>
+          </div>
+
+          <div class="form-card">
+            <div id="form-wizard">
+              <div class="form-top">
+                <div class="meta">
+                  <span id="step-label">Paso 1 de 6 · Objetivo</span>
+                  <strong id="step-percent">17%</strong>
+                </div>
+                <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+              </div>
+
+              <form class="form-body" onsubmit="return false;">
+                <div class="step-panel" data-step="1">
+                  <h3>¿Qué quieres conseguir?</h3>
+                  <p class="hint">Elige el objetivo principal de tu solicitud.</p>
+                  <div class="purpose-options">
+                    <label><input type="radio" name="purpose" checked /> Comprar una vivienda</label>
+                    <label><input type="radio" name="purpose" /> Mejorar mi hipoteca actual</label>
+                    <label><input type="radio" name="purpose" /> Cambiar de banco</label>
+                    <label><input type="radio" name="purpose" /> Ampliar o sacar liquidez</label>
+                  </div>
+                </div>
+
+                <div class="step-panel" data-step="2" hidden>
+                  <h3>Datos del inmueble</h3>
+                  <p class="hint">Con esto estimamos el escenario de financiación.</p>
+                  <div class="grid-2">
+                    <div class="field">
+                      <label for="property_price">Precio aproximado (<span data-bind="currency">€</span>)</label>
+                      <input id="property_price" type="number" placeholder="250000" />
+                    </div>
+                    <div class="field">
+                      <label for="province">Provincia</label>
+                      <select id="province"></select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="step-panel" data-step="3" hidden>
+                  <h3>Financiación y ahorros</h3>
+                  <p class="hint">Indica cuánto quieres financiar y qué liquidez tienes disponible.</p>
+                  <div class="grid-2">
+                    <div class="field">
+                      <label for="financing_amount">Financiación deseada (<span data-bind="currency">€</span>)</label>
+                      <input id="financing_amount" type="number" placeholder="200000" />
+                    </div>
+                    <div class="field">
+                      <label for="savings_amount">Ahorros disponibles (<span data-bind="currency">€</span>)</label>
+                      <input id="savings_amount" type="number" placeholder="50000" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="step-panel" data-step="4" hidden>
+                  <h3>Titulares y empleo</h3>
+                  <p class="hint">La situación laboral influye en la viabilidad de la operación.</p>
+                  <div class="grid-2">
+                    <div class="field">
+                      <label for="holders">Nº de titulares</label>
+                      <select id="holders">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label for="employment">Situación laboral</label>
+                      <select id="employment">
+                        <option>Indefinido / fijo</option>
+                        <option>Temporal / eventual</option>
+                        <option>Autónomo</option>
+                        <option>Funcionario</option>
+                        <option>Otra situación</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="step-panel" data-step="5" hidden>
+                  <h3>Ingresos y deudas</h3>
+                  <p class="hint">Usa cifras netas mensuales aproximadas del hogar solicitante.</p>
+                  <div class="grid-2">
+                    <div class="field">
+                      <label for="income">Ingresos netos mensuales (<span data-bind="currency">€</span>)</label>
+                      <input id="income" type="number" placeholder="3200" />
+                    </div>
+                    <div class="field">
+                      <label for="debts">Deudas mensuales (<span data-bind="currency">€</span>)</label>
+                      <input id="debts" type="number" placeholder="250" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="step-panel" data-step="6" hidden>
+                  <h3>Tus datos de contacto</h3>
+                  <p class="hint">En el producto real aquí se envía el lead al CRM y correos.</p>
+                  <div class="field">
+                    <label for="name">Nombre completo</label>
+                    <input id="name" type="text" placeholder="Ana Pérez" />
+                  </div>
+                  <div class="grid-2">
+                    <div class="field">
+                      <label for="email">Email</label>
+                      <input id="email" type="email" placeholder="ana@example.com" />
+                    </div>
+                    <div class="field">
+                      <label for="phone">Teléfono</label>
+                      <input id="phone" type="tel" placeholder="612345678" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button class="btn btn-ghost" id="btn-prev" type="button" hidden style="color: var(--brand-950); border-color: #d6d3d1">
+                    Atrás
+                  </button>
+                  <button class="btn btn-gold" id="btn-next" type="button">Continuar</button>
+                </div>
+                <p class="form-note">
+                  Demo UI: al enviar solo muestra confirmación. En Laravel real valida, guarda lead, Clientify, UTMs y emails.
+                </p>
+              </form>
+            </div>
+
+            <div class="success" id="form-success">
+              <h3>Solicitud enviada</h3>
+              <p class="lead" style="margin-inline: auto">
+                Gracias. En el producto real, aquí se crearía el lead y te contactaríamos en breve.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section bg-white">
+        <div class="wrap">
+          <h2 data-bind="testimonials_title">Lo que dicen quienes ya dieron el paso</h2>
+          <div class="quotes" id="testimonials"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap faq">
+          <h2 data-bind="faq_title">Preguntas frecuentes</h2>
+          <div id="faq" style="margin-top: 1.5rem"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap inner">
+        <div>
+          <p class="brand" data-bind="brand_name">Clarahipoteca</p>
+          <p data-bind="footer_legal">Servicio informativo de orientación hipotecaria.</p>
+        </div>
+        <p style="font-size: 0.82rem">Demo estática · GitHub Pages</p>
+      </div>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
