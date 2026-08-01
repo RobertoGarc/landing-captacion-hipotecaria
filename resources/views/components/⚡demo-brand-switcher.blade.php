@@ -11,9 +11,11 @@ new class extends Component
     {
         $this->brand = DemoBrand::currentKey();
 
-        $requested = request()->query('demo');
+        $requested = collect(['demo', 'marca', 'brand'])
+            ->map(fn (string $key) => request()->query($key))
+            ->first(fn ($value) => is_string($value) && DemoBrand::exists($value));
 
-        if (is_string($requested) && DemoBrand::exists($requested)) {
+        if (is_string($requested)) {
             DemoBrand::set($requested);
             $this->brand = $requested;
         }

@@ -88,7 +88,11 @@ URL típica:
 
 `https://robertogarc.github.io/landing-captacion-hipotecaria/`
 
-También puedes forzar marca: `?demo=crediservicios`
+Para abrir ya en Crediservicios:
+
+`https://robertogarc.github.io/landing-captacion-hipotecaria/?marca=crediservicios`
+
+También valen `?demo=crediservicios` o `?brand=crediservicios`.
 
 > Es una demo de presentación: el formulario **no** guarda leads. El producto real sigue siendo Laravel.
 

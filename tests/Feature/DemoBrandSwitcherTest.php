@@ -28,3 +28,10 @@ test('acepta demo por query string', function () {
 
     expect(DemoBrand::currentKey())->toBe('crediservicios');
 });
+
+test('acepta marca por query string', function () {
+    $this->get(route('home', ['marca' => 'crediservicios']))
+        ->assertOk();
+
+    expect(DemoBrand::currentKey())->toBe('crediservicios');
+});

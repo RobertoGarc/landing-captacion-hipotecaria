@@ -261,8 +261,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const params = new URLSearchParams(window.location.search);
-  const fromQuery = params.get("demo");
+  const fromQuery = [params.get("demo"), params.get("marca"), params.get("brand")]
+    .map((value) => (value || "").toLowerCase().trim())
+    .find((value) => Boolean(brands[value]));
+
+  // La URL manda siempre; si no hay parámetro, usa la última marca o Clarahipoteca.
   const saved = localStorage.getItem("demo_brand");
-  const initial = brands[fromQuery] ? fromQuery : brands[saved] ? saved : "clarahipoteca";
+  const initial = fromQuery || (brands[saved] ? saved : "clarahipoteca");
   renderBrand(initial);
 });
