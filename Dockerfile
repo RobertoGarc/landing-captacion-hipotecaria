@@ -1,13 +1,3 @@
-FROM node:22-bookworm-slim AS frontend
-
-WORKDIR /app
-
-COPY package.json package-lock.json ./
-RUN npm ci
-
-COPY . .
-RUN npm run build
-
 FROM composer:2 AS vendor
 
 WORKDIR /app
@@ -22,6 +12,18 @@ RUN composer install \
 
 COPY . .
 RUN composer dump-autoload --optimize --no-scripts
+
+FROM node:22-bookworm-slim AS frontend
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY . .
+COPY --from=vendor /app/vendor /app/vendor
+
+RUN npm run build
 
 FROM richarvey/nginx-php-fpm:3.1.6
 
