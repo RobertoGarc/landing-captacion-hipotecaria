@@ -59,8 +59,10 @@ return [
             'country' => 'EC',
             'currency' => 'USD',
             'content' => [
-                'brand_name' => 'Crediservicios',
-                'brand_tagline' => 'Broker hipotecario en Ecuador · Precalificación seria, sin rodeos',
+                'brand_name' => 'Crediservicios Ecuador',
+                'brand_tagline' => 'Broker de crédito · Precalificación seria, sin rodeos',
+                'brand_logo' => '/images/crediservicios-mark.svg',
+                'brand_logo_full' => '/images/crediservicios-logo.svg',
                 'hero_headline' => 'Precalifica tu crédito hipotecario antes de enamorarte de una casa',
                 'hero_subheadline' => 'Analizamos tu perfil frente a BIESS y banca privada. Te decimos cuánto puedes financiar, qué entidad te conviene y qué papeles preparar. Quito y todo Ecuador.',
                 'hero_cta' => 'Empezar precalificación gratis',

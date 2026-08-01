@@ -11,11 +11,11 @@
 }
 
 [data-theme="crediservicios"] {
-  --canvas: #f2f5f9;
-  --gold: #f0b429;
-  --brand-700: #1f4d76;
-  --brand-900: #1a3652;
-  --brand-950: #0d1f33;
+  --canvas: #f4f7f3;
+  --gold: #c4a35a;
+  --brand-700: #174f1c;
+  --brand-900: #113314;
+  --brand-950: #0a1f0c;
 }
 
 *,
@@ -113,10 +113,36 @@ a {
 }
 
 .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
   color: var(--white);
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+}
+
+.logo img {
+  height: 2.6rem;
+  width: auto;
+}
+
+.hero-logo {
+  display: block;
+  height: clamp(5.5rem, 16vw, 7.2rem);
+  width: auto;
+  max-width: min(100%, 22rem);
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 0.7rem 0.85rem;
+  box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.55);
+  animation: fade-up 0.8s ease both;
+}
+
+.footer-logo {
+  height: 3rem;
+  width: auto;
+  margin-bottom: 0.4rem;
 }
 
 .header-cta {

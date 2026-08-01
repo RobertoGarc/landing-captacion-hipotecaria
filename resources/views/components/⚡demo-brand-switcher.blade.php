@@ -46,11 +46,11 @@ new class extends Component
             aria-checked="{{ $brand === 'crediservicios' ? 'true' : 'false' }}"
             aria-label="Alternar marca de demostración"
             wire:click="$set('brand', '{{ $brand === 'crediservicios' ? 'clarahipoteca' : 'crediservicios' }}')"
-            class="relative h-7 w-12 rounded-full transition {{ $brand === 'crediservicios' ? 'bg-sky-500' : 'bg-brand-600' }}"
+            class="relative h-7 w-12 rounded-full transition {{ $brand === 'crediservicios' ? 'bg-gold' : 'bg-brand-600' }}"
         >
             <span class="absolute top-0.5 left-0.5 size-6 rounded-full bg-white transition {{ $brand === 'crediservicios' ? 'translate-x-5' : 'translate-x-0' }}"></span>
         </button>
-        <span class="text-xs font-medium {{ $brand === 'crediservicios' ? 'text-sky-300' : 'text-white/50' }}">Credi</span>
+        <span class="text-xs font-medium {{ $brand === 'crediservicios' ? 'text-gold' : 'text-white/50' }}">Credi</span>
     </div>
     <p class="mt-2 max-w-[11rem] text-[11px] leading-snug text-white/45">
         {{ $brand === 'crediservicios' ? 'Crediservicios · Ecuador' : 'Clarahipoteca · demo' }}

@@ -59,9 +59,11 @@ const brands = {
     formLead: "Cuéntanos tu caso y te orientamos sobre BIESS, banca privada y siguientes pasos.",
     provinces: ["Pichincha", "Guayas", "Azuay", "Manabí", "Tungurahua", "Imbabura"],
     phonePlaceholder: "0991234567",
+    logo: "./images/crediservicios-mark.svg",
+    logoFull: "./images/crediservicios-logo.svg",
     content: {
-      brand_name: "Crediservicios",
-      brand_tagline: "Broker hipotecario en Ecuador · Precalificación seria, sin rodeos",
+      brand_name: "Crediservicios Ecuador",
+      brand_tagline: "Broker de crédito · Precalificación seria, sin rodeos",
       hero_headline: "Precalifica tu crédito hipotecario antes de enamorarte de una casa",
       hero_subheadline:
         "Analizamos tu perfil frente a BIESS y banca privada. Te decimos cuánto puedes financiar, qué entidad te conviene y qué papeles preparar. Quito y todo Ecuador.",
@@ -151,6 +153,39 @@ function renderBrand(key) {
   if (hero) {
     hero.src = c.hero_image_url;
     hero.alt = c.hero_image_alt;
+  }
+
+  const headerMark = $("#header-mark");
+  const heroLogo = $("#hero-logo");
+  const heroBrandText = $("#hero-brand-text");
+  const footerMark = $("#footer-mark");
+
+  if (headerMark) {
+    headerMark.hidden = !brand.logo;
+    if (brand.logo) {
+      headerMark.src = brand.logo;
+      headerMark.alt = c.brand_name;
+    }
+  }
+
+  if (heroLogo && heroBrandText) {
+    if (brand.logoFull) {
+      heroLogo.hidden = false;
+      heroLogo.src = brand.logoFull;
+      heroLogo.alt = c.brand_name;
+      heroBrandText.hidden = true;
+    } else {
+      heroLogo.hidden = true;
+      heroBrandText.hidden = false;
+    }
+  }
+
+  if (footerMark) {
+    footerMark.hidden = !brand.logo;
+    if (brand.logo) {
+      footerMark.src = brand.logo;
+      footerMark.alt = c.brand_name;
+    }
   }
 
   const benefits = $("#benefits");
@@ -261,7 +296,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const params = new URLSearchParams(window.location.search);
-  const fromQuery = [params.get("demo"), params.get("marca"), params.get("brand")]
+  const fromQuery = [params.get("marca"), params.get("demo"), params.get("brand")]
     .map((value) => (value || "").toLowerCase().trim())
     .find((value) => Boolean(brands[value]));
 

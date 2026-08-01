@@ -51,20 +51,21 @@
         --color-accent-foreground: var(--color-neutral-800);
     }
 
+    /* Crediservicios: verde bosque + dorado del logo CSV */
     [data-theme='crediservicios'] {
-        --color-canvas: #f2f5f9;
-        --color-gold: #f0b429;
-        --color-brand-50: #f0f7fc;
-        --color-brand-100: #d9ebf7;
-        --color-brand-200: #b3d6ef;
-        --color-brand-300: #7eb8e0;
-        --color-brand-400: #4a95c9;
-        --color-brand-500: #2f78b0;
-        --color-brand-600: #255f91;
-        --color-brand-700: #1f4d76;
-        --color-brand-800: #1c4062;
-        --color-brand-900: #1a3652;
-        --color-brand-950: #0d1f33;
+        --color-canvas: #f4f7f3;
+        --color-gold: #c4a35a;
+        --color-brand-50: #eef6ef;
+        --color-brand-100: #d5ead8;
+        --color-brand-200: #adceb3;
+        --color-brand-300: #7aab82;
+        --color-brand-400: #4d8a57;
+        --color-brand-500: #2f6f3a;
+        --color-brand-600: #1b5e20;
+        --color-brand-700: #174f1c;
+        --color-brand-800: #143f18;
+        --color-brand-900: #113314;
+        --color-brand-950: #0a1f0c;
     }
 }
 

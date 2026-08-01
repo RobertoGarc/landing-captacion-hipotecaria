@@ -3,6 +3,8 @@
 
     $brand = DemoBrand::get('brand_name');
     $tagline = DemoBrand::get('brand_tagline', '');
+    $brandLogo = DemoBrand::get('brand_logo');
+    $brandLogoFull = DemoBrand::get('brand_logo_full');
     $heroHeadline = DemoBrand::get('hero_headline', '');
     $heroSub = DemoBrand::get('hero_subheadline', '');
     $heroCta = DemoBrand::get('hero_cta', 'Empezar estudio');
@@ -19,7 +21,8 @@
     $faqTitle = DemoBrand::get('faq_title', '');
     $faqs = DemoBrand::get('faq_items', []);
     $footerLegal = DemoBrand::get('footer_legal', '');
-    $ctaLabel = DemoBrand::currentKey() === 'crediservicios' ? 'Precalificar' : 'Estudiar hipoteca';
+    $isCrediservicios = DemoBrand::currentKey() === 'crediservicios';
+    $ctaLabel = $isCrediservicios ? 'Precalificar' : 'Estudiar hipoteca';
 @endphp
 
 <x-layouts::marketing :title="$brand">
@@ -27,8 +30,13 @@
 
     <header class="absolute inset-x-0 top-0 z-20">
         <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 sm:px-8">
-            <a href="{{ route('home') }}" class="font-display text-xl tracking-tight text-white drop-shadow sm:text-2xl">
-                {{ $brand }}
+            <a href="{{ route('home') }}" class="flex items-center gap-3 text-white drop-shadow">
+                @if ($brandLogo)
+                    <img src="{{ $brandLogo }}" alt="{{ $brand }}" class="h-10 w-auto sm:h-12" />
+                    <span class="font-display text-lg tracking-tight sm:text-xl">{{ $brand }}</span>
+                @else
+                    <span class="font-display text-xl tracking-tight sm:text-2xl">{{ $brand }}</span>
+                @endif
             </a>
             <a href="#estudio" class="rounded-full bg-white/15 px-4 py-2 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/25">
                 {{ $ctaLabel }}
@@ -45,12 +53,20 @@
                 fetchpriority="high"
             />
             <div class="absolute inset-0 bg-gradient-to-r from-brand-950/90 via-brand-950/70 to-brand-900/35"></div>
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(212,175,106,0.18),transparent_45%)]"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(196,163,90,0.22),transparent_45%)]"></div>
 
             <div class="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 sm:px-8 sm:pb-20">
-                <p class="animate-fade-up font-display text-4xl leading-none tracking-tight text-white sm:text-6xl lg:text-7xl">
-                    {{ $brand }}
-                </p>
+                @if ($brandLogoFull)
+                    <img
+                        src="{{ $brandLogoFull }}"
+                        alt="{{ $brand }}"
+                        class="animate-fade-up h-24 w-auto max-w-[min(100%,22rem)] rounded-xl bg-white/95 p-3 shadow-lg sm:h-28"
+                    />
+                @else
+                    <p class="animate-fade-up font-display text-4xl leading-none tracking-tight text-white sm:text-6xl lg:text-7xl">
+                        {{ $brand }}
+                    </p>
+                @endif
                 <h1 class="animate-fade-up-delay mt-5 max-w-2xl text-balance text-2xl font-medium leading-snug text-white/95 sm:text-3xl">
                     {{ $heroHeadline }}
                 </h1>
@@ -170,7 +186,12 @@
     <footer class="bg-brand-950 px-5 py-10 text-white/70 sm:px-8">
         <div class="mx-auto flex max-w-6xl flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-                <p class="font-display text-xl text-white">{{ $brand }}</p>
+                @if ($brandLogo)
+                    <img src="{{ $brandLogo }}" alt="{{ $brand }}" class="h-12 w-auto" />
+                    <p class="mt-2 font-display text-lg text-white">{{ $brand }}</p>
+                @else
+                    <p class="font-display text-xl text-white">{{ $brand }}</p>
+                @endif
                 <p class="mt-2 max-w-xl text-sm">{{ $footerLegal }}</p>
             </div>
             <a href="{{ route('login') }}" class="text-sm text-white/50 hover:text-white">Acceso equipo</a>
