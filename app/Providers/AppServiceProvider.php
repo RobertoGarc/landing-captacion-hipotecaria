@@ -5,6 +5,7 @@ namespace App\Providers;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 
@@ -24,6 +25,25 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureDefaults();
+        $this->configureProductionUrl();
+    }
+
+    /**
+     * Force HTTPS / root URL behind Render (and similar proxies).
+     */
+    protected function configureProductionUrl(): void
+    {
+        if (! app()->isProduction()) {
+            return;
+        }
+
+        $externalUrl = env('RENDER_EXTERNAL_URL') ?: env('APP_URL');
+
+        if (filled($externalUrl)) {
+            URL::forceRootUrl($externalUrl);
+        }
+
+        URL::forceScheme('https');
     }
 
     /**

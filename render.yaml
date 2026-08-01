@@ -1,0 +1,54 @@
+databases:
+  - name: landing-hipotecaria-db
+    plan: free
+    databaseName: landing
+    user: landing
+
+services:
+  - type: web
+    name: landing-hipotecaria
+    runtime: docker
+    plan: free
+    region: oregon
+    healthCheckPath: /up
+    envVars:
+      - key: APP_NAME
+        value: LandingHipotecaria
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        sync: false
+      - key: APP_LOCALE
+        value: es
+      - key: APP_FALLBACK_LOCALE
+        value: es
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: LOG_LEVEL
+        value: info
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_URL
+        fromDatabase:
+          name: landing-hipotecaria-db
+          property: connectionString
+      - key: DATABASE_URL
+        fromDatabase:
+          name: landing-hipotecaria-db
+          property: connectionString
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: MAIL_MAILER
+        value: log
+      - key: MAIL_FROM_ADDRESS
+        value: demo@example.com
+      - key: MAIL_FROM_NAME
+        value: LandingHipotecaria
+      - key: LEADS_BRAND_NAME
+        value: Clarahipoteca

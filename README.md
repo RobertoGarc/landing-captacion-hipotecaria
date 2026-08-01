@@ -70,65 +70,39 @@ En `.env.example` están placeholders para:
 
 Sin estas claves la landing y el formulario funcionan igual; solo quedan desactivadas esas integraciones.
 
-## Desplegar demo en Railway
+## Desplegar demo en Render (recomendado / gratis)
 
-El repo ya incluye `railway.toml` y `railway/init-app.sh` (migrate + seed + caches).
+El repo incluye `render.yaml`, `Dockerfile` y `scripts/00-laravel-deploy.sh`.
 
-### 1. Proyecto y base de datos
+### Pasos
 
-1. Entra en [railway.com](https://railway.com) e inicia sesión (con GitHub).
-2. **New Project** → **Deploy from GitHub repo** → `RobertoGarc/landing-captacion-hipotecaria`.
-3. En el mismo proyecto: **Add Service** → **Database** → **PostgreSQL**.
-
-### 2. Variables del servicio de la app
-
-En el servicio de la app → **Variables** → pega esto (ajusta si tu Postgres no se llama `Postgres`):
-
-```env
-APP_NAME=LandingHipotecaria
-APP_ENV=production
-APP_KEY=base64:PEGAR_AQUI_LA_KEY
-APP_DEBUG=false
-APP_URL=https://${{RAILWAY_PUBLIC_DOMAIN}}
-APP_LOCALE=es
-APP_FALLBACK_LOCALE=es
-LOG_CHANNEL=stderr
-LOG_LEVEL=info
-DB_CONNECTION=pgsql
-DB_URL=${{Postgres.DATABASE_URL}}
-SESSION_DRIVER=database
-CACHE_STORE=database
-QUEUE_CONNECTION=sync
-MAIL_MAILER=log
-MAIL_FROM_ADDRESS=demo@example.com
-MAIL_FROM_NAME=LandingHipotecaria
-LEADS_BRAND_NAME=Clarahipoteca
-RAILPACK_PHP_EXTENSIONS=pgsql
-RAILPACK_SKIP_MIGRATIONS=true
-```
-
-Genera `APP_KEY` en local con:
+1. Entra en [dashboard.render.com](https://dashboard.render.com) e inicia sesión con GitHub.
+2. **New** → **Blueprint** → conecta el repo `RobertoGarc/landing-captacion-hipotecaria`.
+3. Render leerá `render.yaml` y creará:
+   - Web service (Docker, plan free)
+   - PostgreSQL (plan free)
+4. Cuando pida **APP_KEY**, pega el resultado de:
 
 ```bash
 php artisan key:generate --show
 ```
 
-Referencia completa: `.env.railway.example`.
+(o usa esta de demo: `base64:OGoQG0IK2/pVGrW78fkYNzYdc2VKto3G/I/Pgj5pbkk=`)
 
-### 3. Dominio público
+5. Confirma el deploy. La URL será tipo `https://landing-hipotecaria.onrender.com`.
 
-En el servicio de la app → **Settings** → **Networking** → **Generate Domain**.
+> El plan free **se duerme** tras ~15 min sin tráfico. La primera visita puede tardar 30–60 s en despertar.
 
-Redeploy si hace falta. La URL quedará tipo `https://….up.railway.app`.
+### Acceso demo
 
-### 4. Acceso demo
-
-- Landing: la URL pública (usa el switch de marca Clarahipoteca / Crediservicios).
+- Landing: URL de Render (switch Clarahipoteca / Crediservicios).
 - Admin: `/login` → `admin@clarahipoteca.test` / `password`.
 
-Cola en `sync` y mail en `log` para que el demo funcione sin worker ni SMTP. Clientify/analytics se pueden añadir después con variables opcionales.
+### Alternativa: Railway
+
+También hay `railway.toml` + `.env.railway.example` si prefieres Railway (créditos iniciales, luego de pago).
 
 ## Notas
 
-- El archivo `.env` **no** se sube al repositorio (secretos locales).
-- Cada push a `main` redespliega el servicio si está conectado a GitHub.
+- El archivo `.env` **no** se sube al repositorio.
+- Cada push a `main` redespliega si el servicio está conectado a GitHub.
