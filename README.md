@@ -70,7 +70,65 @@ En `.env.example` están placeholders para:
 
 Sin estas claves la landing y el formulario funcionan igual; solo quedan desactivadas esas integraciones.
 
+## Desplegar demo en Railway
+
+El repo ya incluye `railway.toml` y `railway/init-app.sh` (migrate + seed + caches).
+
+### 1. Proyecto y base de datos
+
+1. Entra en [railway.com](https://railway.com) e inicia sesión (con GitHub).
+2. **New Project** → **Deploy from GitHub repo** → `RobertoGarc/landing-captacion-hipotecaria`.
+3. En el mismo proyecto: **Add Service** → **Database** → **PostgreSQL**.
+
+### 2. Variables del servicio de la app
+
+En el servicio de la app → **Variables** → pega esto (ajusta si tu Postgres no se llama `Postgres`):
+
+```env
+APP_NAME=LandingHipotecaria
+APP_ENV=production
+APP_KEY=base64:PEGAR_AQUI_LA_KEY
+APP_DEBUG=false
+APP_URL=https://${{RAILWAY_PUBLIC_DOMAIN}}
+APP_LOCALE=es
+APP_FALLBACK_LOCALE=es
+LOG_CHANNEL=stderr
+LOG_LEVEL=info
+DB_CONNECTION=pgsql
+DB_URL=${{Postgres.DATABASE_URL}}
+SESSION_DRIVER=database
+CACHE_STORE=database
+QUEUE_CONNECTION=sync
+MAIL_MAILER=log
+MAIL_FROM_ADDRESS=demo@example.com
+MAIL_FROM_NAME=LandingHipotecaria
+LEADS_BRAND_NAME=Clarahipoteca
+RAILPACK_PHP_EXTENSIONS=pgsql
+RAILPACK_SKIP_MIGRATIONS=true
+```
+
+Genera `APP_KEY` en local con:
+
+```bash
+php artisan key:generate --show
+```
+
+Referencia completa: `.env.railway.example`.
+
+### 3. Dominio público
+
+En el servicio de la app → **Settings** → **Networking** → **Generate Domain**.
+
+Redeploy si hace falta. La URL quedará tipo `https://….up.railway.app`.
+
+### 4. Acceso demo
+
+- Landing: la URL pública (usa el switch de marca Clarahipoteca / Crediservicios).
+- Admin: `/login` → `admin@clarahipoteca.test` / `password`.
+
+Cola en `sync` y mail en `log` para que el demo funcione sin worker ni SMTP. Clientify/analytics se pueden añadir después con variables opcionales.
+
 ## Notas
 
 - El archivo `.env` **no** se sube al repositorio (secretos locales).
-- Este repo es el **código fuente** del demo. Para una URL pública en internet hace falta un hosting PHP (Laravel Cloud, VPS, etc.).
+- Cada push a `main` redespliega el servicio si está conectado a GitHub.
